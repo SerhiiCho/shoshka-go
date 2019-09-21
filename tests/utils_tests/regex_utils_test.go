@@ -1,4 +1,4 @@
-package tests
+package utilstests
 
 import (
 	"testing"
@@ -7,7 +7,7 @@ import (
 )
 
 func TestGetLinksFromHTML_returns_links_from_html_string(t *testing.T) {
-	fileText := utils.FileGetContents("files/example")
+	fileText := utils.FileGetContents("../files/example")
 	result := utils.GetLinksFromHTML(fileText)
 
 	if len(result) != 8 {
@@ -17,7 +17,7 @@ func TestGetLinksFromHTML_returns_links_from_html_string(t *testing.T) {
 
 func TestGetAllInformation_returns_slice_with_PhotoReport_models(t *testing.T) {
 	links := []string{
-		utils.FileGetContents("files/link"),
+		utils.FileGetContents("../files/link"),
 	}
 
 	title := "Title here"

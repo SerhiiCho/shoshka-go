@@ -1,4 +1,4 @@
-package tests
+package utilstests
 
 import (
 	"testing"
@@ -7,7 +7,7 @@ import (
 )
 
 func TestFileGetContents_returns_file_content(t *testing.T) {
-	result := utils.FileGetContents("files/small_text")
+	result := utils.FileGetContents("../files/small_text")
 
 	if result != "Hello world" {
 		t.Error("The value of result variable must be 'Hello world'")
@@ -15,7 +15,7 @@ func TestFileGetContents_returns_file_content(t *testing.T) {
 }
 
 func TestFileGetContents_returns_empty_string_if_file_is_empty(t *testing.T) {
-	result := utils.FileGetContents("files/empty")
+	result := utils.FileGetContents("../files/empty")
 
 	if result != "" {
 		t.Error("The value of result variable must be empty string")
