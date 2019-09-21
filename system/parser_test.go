@@ -8,7 +8,7 @@ import (
 )
 
 func TestGetLinksFromHTML_returns_links_from_html_string(t *testing.T) {
-	fileText := utils.FileGetContents("../test_files/example.html")
+	fileText := utils.FileGetContents("../test_files/example")
 	result := system.GetLinksFromHTML(fileText)
 
 	if len(result) != 8 {
@@ -16,7 +16,7 @@ func TestGetLinksFromHTML_returns_links_from_html_string(t *testing.T) {
 	}
 }
 
-func TestGetAllInformation_returns_slice_with_pointers_on_filled_PhotoReport_models(t *testing.T) {
+func TestGetAllInformation_returns_slice_with_PhotoReport_models(t *testing.T) {
 	links := []string{
 		utils.FileGetContents("../test_files/link"),
 	}
