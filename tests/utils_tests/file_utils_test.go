@@ -6,26 +6,28 @@ import (
 	"github.com/SerhiiCho/shoshka_go/utils"
 )
 
-func TestFileGetContents_returns_file_content(t *testing.T) {
-	result := utils.FileGetContents("../files/small_text")
+func TestFileGetContents(t *testing.T) {
+	t.Run("returns file content", func(t *testing.T) {
+		result := utils.FileGetContents("../files/small_text")
 
-	if result != "Hello world" {
-		t.Error("The value of result variable must be 'Hello world'")
-	}
-}
+		if result != "Hello world" {
+			t.Errorf("The value of result variable must be %v", result)
+		}
+	})
 
-func TestFileGetContents_returns_empty_string_if_file_is_empty(t *testing.T) {
-	result := utils.FileGetContents("../files/empty")
+	t.Run("returns empty string if file is empty", func(t *testing.T) {
+		result := utils.FileGetContents("../files/empty")
 
-	if result != "" {
-		t.Error("The value of result variable must be empty string")
-	}
-}
+		if result != "" {
+			t.Error("The value of result variable must be empty string")
+		}
+	})
 
-func TestFileGetContents_returns_empty_string_if_doesnt_exist(t *testing.T) {
-	result := utils.FileGetContents("lfkasdjflkdsjlfkajdkf")
+	t.Run("returns empty string if does not exist", func(t *testing.T) {
+		result := utils.FileGetContents("lfkasdjflkdsjlfkajdkf")
 
-	if result != "" {
-		t.Error("FileGetContents must return empty string because file doesn't exist")
-	}
+		if result != "" {
+			t.Error("FileGetContents must return empty string because file doesn't exist")
+		}
+	})
 }

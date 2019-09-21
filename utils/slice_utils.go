@@ -12,7 +12,7 @@ func Contains(slice []string, needle string) bool {
 
 // GetUniqueItem returns unique item from a slice
 func GetUniqueItem(slice1 []string, slice2 []string) []string {
-	result := []string{}
+	var result []string
 
 	for _, item1 := range slice1 {
 		if !Contains(slice2, item1) {
