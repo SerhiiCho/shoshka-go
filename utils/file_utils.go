@@ -1,6 +1,7 @@
 package utils
 
 import (
+	"encoding/json"
 	"io/ioutil"
 )
 
@@ -14,4 +15,22 @@ func FileGetContents(filePath string) string {
 	}
 
 	return string(fileText)
+}
+
+// GetCachedTitles returns cache
+func GetCachedTitles() []string {
+	var oldSlice []string
+
+	oldContext := FileGetContents("./storage/titles")
+	err := json.Unmarshal([]byte(oldContext), &oldSlice)
+	HandleError(err, "Unmarshal method returned error")
+
+	return oldSlice
+}
+
+// PutTitlesIntoCache insert titles into a file in JSON
+func PutTitlesIntoCache(titles []string) {
+	file, _ := json.MarshalIndent(titles, "", " ")
+	err := ioutil.WriteFile("./storage/titles", file, 0644)
+	HandleError(err, "Can't write to a file storage/titles")
 }

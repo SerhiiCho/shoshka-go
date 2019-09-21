@@ -1,8 +1,6 @@
 package models
 
-/*
-PhotoReport model
-*/
+// PhotoReport model
 type PhotoReport struct {
 	Title string
 	Image string
