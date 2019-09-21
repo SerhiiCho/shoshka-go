@@ -18,6 +18,8 @@ func main() {
 
 	linksHTML := utils.GetLinksFromHTML(html)
 	photoReports := utils.GetAllInformation(linksHTML)
+	titles := getTitlesFromPhotoReports(photoReports)
+	tgMessageData := utils.GenerateMapOfNewData(titles, photoReports)
 
 	var titles []string
 
