@@ -18,28 +18,7 @@ func init() {
 func saveTitlesIntoFile(titles []string) {
 	file, _ := json.MarshalIndent(titles, "", " ")
 	err := ioutil.WriteFile("./storage/titles", file, 0644)
-	utils.HandleError(err, "Can't write to a file")
-}
-
-func contains(slice []string, needle string) bool {
-	for _, sliceItem := range slice {
-		if sliceItem == needle {
-			return true
-		}
-	}
-	return false
-}
-
-func getUniqueItem(slice1 []string, slice2 []string) []string {
-	result := []string{}
-
-	for _, item1 := range slice1 {
-		if !contains(slice2, item1) {
-			result = append(result, item1)
-		}
-	}
-
-	return result
+	utils.HandleError(err, "Can't write to a file strage/titles")
 }
 
 func main() {
@@ -60,8 +39,7 @@ func main() {
 	oldContext := utils.FileGetContents("./storage/titles")
 	oldSlice := []string{}
 	json.Unmarshal([]byte(oldContext), &oldSlice)
-	// saveTitlesIntoFile(titles)
-	diff := getUniqueItem(titles, oldSlice)
+	diff := utils.GetUniqueItem(titles, oldSlice)
 
 	if len(diff) == 0 {
 		println("No diff")
@@ -69,4 +47,5 @@ func main() {
 	}
 
 	fmt.Printf("%#v\n", diff)
+	// saveTitlesIntoFile(titles)
 }

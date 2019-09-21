@@ -6,18 +6,14 @@ import (
 	"github.com/SerhiiCho/shoshka_go/models"
 )
 
-/*
-GetLinksFromHTML returns all html links
-*/
+// GetLinksFromHTML returns all html links
 func GetLinksFromHTML(html string) []string {
 	linksRegex := "<a href=[\"'](.*?)[\"']\\sdata-rel=[\"']slide-.*?[\"']\\sclass=[\"']slide-image[\"']\\s.*?>.*?<\\/a>"
 	return regexp.MustCompile(linksRegex).FindAllString(html, -1)
 }
 
-/*
-GetAllInformation parses anchor tags and takes image src,
-link url and title.
-*/
+// GetAllInformation parses anchor tags and takes image src,
+// link url and title.
 func GetAllInformation(html []string) []models.PhotoReport {
 	var photoReport models.PhotoReport
 	var result []models.PhotoReport

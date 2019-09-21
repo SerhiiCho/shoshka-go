@@ -5,10 +5,8 @@ import (
 	"net/http"
 )
 
-/*
-GetHTMLFromTargetURL makes request to a web page
-and returns html string
-*/
+// GetHTMLFromTargetURL makes request to a web page
+// and returns html string
 func GetHTMLFromTargetURL(url string) string {
 	resp, err := http.Get(url)
 
