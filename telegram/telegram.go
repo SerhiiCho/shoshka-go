@@ -18,3 +18,9 @@ func SendMessage(message string) {
 
 	bot.Send(msg)
 }
+
+func SendMessagesWithNewPhotoReports(newReports []models.PhotoReport) {
+	for _, report := range newReports {
+		SendMessage(report.Title)
+	}
+}

@@ -23,9 +23,9 @@ func main() {
 
 	var titles []string
 
-	for _, photoReport := range photoReports {
-		titles = append(titles, photoReport.Title)
-	}
+	telegram.SendMessagesWithNewPhotoReports(tgMessageData)
+	utils.PutTitlesIntoCache(titles)
+}
 
 	doesntHaveNewItems, tgMessageData := utils.GenerateMapOfNewData(titles, photoReports)
 
