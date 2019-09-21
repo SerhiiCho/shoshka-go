@@ -44,26 +44,26 @@ func GetIndexOfSliceItem(slice []string, value string) int {
 	return -1
 }
 
-// GenerateMapOfNewData returns (true, nil) if there are no new photo reports
-func GenerateMapOfNewData(titles []string, photoReports []models.PhotoReport) (bool, []map[string]string) {
+// GenerateMapOfNewData returns nil if there are no new photo reports
+func GenerateMapOfNewData(titles []string, photoReports []models.PhotoReport) []models.PhotoReport {
 	oldTitles := GetCachedTitles()
 	newPhotoReportTitles := GetUniqueItem(titles, oldTitles)
 
 	if len(newPhotoReportTitles) == 0 {
-		return true, nil
+		return nil
 	}
 
-	var tgMessageData []map[string]string
+	var tgMessageData []models.PhotoReport
 
 	for _, newReportTitle := range newPhotoReportTitles {
 		index := GetIndexOfSliceItem(titles, newReportTitle)
 
-		tgMessageData = append(tgMessageData, map[string]string{
-			"title": newReportTitle,
-			"image": photoReports[index].Image,
-			"url":   photoReports[index].URL,
+		tgMessageData = append(tgMessageData, models.PhotoReport{
+			Title: newReportTitle,
+			Image: photoReports[index].Image,
+			URL:   photoReports[index].URL,
 		})
 	}
 
-	return false, tgMessageData
+	return tgMessageData
 }
