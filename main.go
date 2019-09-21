@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"io/ioutil"
 	"os"
 
 	"github.com/SerhiiCho/shoshka_go/system"
@@ -14,7 +15,8 @@ func init() {
 
 func saveTitlesToFile(titles []string) {
 	file, _ := json.MarshalIndent(titles, "", " ")
-	utils.FilePutContent("", string(file))
+	err := ioutil.WriteFile("hello.txt", file, 0644)
+	utils.HandleError(err, "Can't write to a file")
 }
 
 func main() {
