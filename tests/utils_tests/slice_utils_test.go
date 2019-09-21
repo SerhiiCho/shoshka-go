@@ -53,3 +53,27 @@ func TestGetUniqueItem(t *testing.T) {
 		}
 	})
 }
+
+func TestGetIndexOfSliceItem(t *testing.T) {
+	slice := []string{"first", "second", "third"}
+	cases := []struct {
+		Title  string
+		Expect int
+		Input  string
+	}{
+		{"returns -1 if value is not in a slice", -1, "forth"},
+		{"returns 1 if value has index 1", 0, "first"},
+		{"returns 2 if value has index 2", 1, "second"},
+		{"returns 3 if value has index 3", 2, "third"},
+	}
+
+	for _, singleCase := range cases {
+		t.Run(singleCase.Title, func(t *testing.T) {
+			result := utils.GetIndexOfSliceItem(slice, singleCase.Input)
+
+			if result != singleCase.Expect {
+				t.Errorf("resulted index must be %d but %d returned", singleCase.Expect, result)
+			}
+		})
+	}
+}

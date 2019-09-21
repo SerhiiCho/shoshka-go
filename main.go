@@ -13,7 +13,6 @@ func init() {
 }
 
 func main() {
-	// telegram.SendMessage("Hello man 2")
 	html := utils.GetHTMLFromTargetURL(os.Getenv("BOT_TARGET_URL"))
 
 	linksHTML := utils.GetLinksFromHTML(html)
@@ -35,6 +34,12 @@ func main() {
 		return
 	}
 
-	fmt.Printf("%#v\n", diff)
-	utils.PutTitlesIntoCache(titles)
+	//fmt.Printf("%#v\n", photoReports)
+
+	// 1. get link and image from photoReports slice
+
+	// 2. send message with image, title and link
+	// telegram.SendMessage("Hello man 2")
+
+	//utils.PutTitlesIntoCache(titles)
 }

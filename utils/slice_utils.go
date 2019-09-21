@@ -28,3 +28,14 @@ func GetUniqueItem(slice1 []string, slice2 []string) []string {
 
 	return result
 }
+
+// GetIndexOfSliceItem returns index of a slice item where value is positioned
+func GetIndexOfSliceItem(slice []string, value string) int {
+	for i, sliceItem := range slice {
+		if sliceItem == value {
+			return i
+		}
+	}
+
+	return -1
+}
