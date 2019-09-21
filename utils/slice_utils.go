@@ -1,5 +1,9 @@
 package utils
 
+import (
+	"github.com/SerhiiCho/shoshka_go/models"
+)
+
 // Contains function returns true if slice contains given item
 func Contains(slice []string, needle string) bool {
 	for _, sliceItem := range slice {
@@ -38,4 +42,28 @@ func GetIndexOfSliceItem(slice []string, value string) int {
 	}
 
 	return -1
+}
+
+// GenerateMapOfNewData returns (true, nil) if there are no new photo reports
+func GenerateMapOfNewData(titles []string, photoReports []models.PhotoReport) (bool, []map[string]string) {
+	oldTitles := GetCachedTitles()
+	newPhotoReportTitles := GetUniqueItem(titles, oldTitles)
+
+	if len(newPhotoReportTitles) == 0 {
+		return true, nil
+	}
+
+	var tgMessageData []map[string]string
+
+	for _, newReportTitle := range newPhotoReportTitles {
+		index := GetIndexOfSliceItem(titles, newReportTitle)
+
+		tgMessageData = append(tgMessageData, map[string]string{
+			"title": newReportTitle,
+			"image": photoReports[index].Image,
+			"url":   photoReports[index].URL,
+		})
+	}
+
+	return false, tgMessageData
 }

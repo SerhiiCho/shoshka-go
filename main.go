@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/SerhiiCho/shoshka_go/utils"
 	"github.com/joho/godotenv"
+	"log"
 	"os"
 )
 
@@ -22,21 +23,16 @@ func main() {
 
 	for _, photoReport := range photoReports {
 		titles = append(titles, photoReport.Title)
-		// log.Println(photoReport.Image)
-		// log.Println(photoReport.Title)
 	}
 
-	oldTitles := utils.GetCachedTitles()
-	diff := utils.GetUniqueItem(titles, oldTitles)
+	doesntHaveNewItems, tgMessageData := utils.GenerateMapOfNewData(titles, photoReports)
 
-	if len(diff) == 0 {
-		println("No diff")
+	if doesntHaveNewItems {
+		log.Print("There are not new photo reports")
 		return
 	}
 
-	//fmt.Printf("%#v\n", photoReports)
-
-	// 1. get link and image from photoReports slice
+	fmt.Printf("%#v\n", tgMessageData)
 
 	// 2. send message with image, title and link
 	// telegram.SendMessage("Hello man 2")
