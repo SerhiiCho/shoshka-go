@@ -3,7 +3,7 @@ package telegram
 import (
 	"os"
 
-	"github.com/SerhiiCho/shoshka/utils"
+	"github.com/SerhiiCho/shoshka_go/utils"
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api"
 )
 

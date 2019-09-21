@@ -1,7 +1,7 @@
 package system
 
 import (
-	"github.com/SerhiiCho/shoshka/utils"
+	"github.com/SerhiiCho/shoshka_go/utils"
 	"github.com/joho/godotenv"
 )
 

@@ -3,7 +3,7 @@ package utils_test
 import (
 	"testing"
 
-	"github.com/SerhiiCho/shoshka/utils"
+	"github.com/SerhiiCho/shoshka_go/utils"
 )
 
 func TestFileGetContents_returns_file_content(t *testing.T) {

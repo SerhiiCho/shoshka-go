@@ -3,8 +3,8 @@ package system_test
 import (
 	"testing"
 
-	"github.com/SerhiiCho/shoshka/system"
-	"github.com/SerhiiCho/shoshka/utils"
+	"github.com/SerhiiCho/shoshka_go/system"
+	"github.com/SerhiiCho/shoshka_go/utils"
 )
 
 func TestGetLinksFromHTML_returns_links_from_html_string(t *testing.T) {
