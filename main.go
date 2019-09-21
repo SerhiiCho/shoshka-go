@@ -1,11 +1,9 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
 	"github.com/SerhiiCho/shoshka_go/utils"
 	"github.com/joho/godotenv"
-	"io/ioutil"
 	"os"
 )
 
