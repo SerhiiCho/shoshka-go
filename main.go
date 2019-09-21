@@ -1,7 +1,8 @@
 package main
 
 import (
-	"fmt"
+	"github.com/SerhiiCho/shoshka_go/models"
+	"github.com/SerhiiCho/shoshka_go/telegram"
 	"github.com/SerhiiCho/shoshka_go/utils"
 	"github.com/joho/godotenv"
 	"log"
@@ -15,29 +16,30 @@ func init() {
 
 func main() {
 	html := utils.GetHTMLFromTargetURL(os.Getenv("BOT_TARGET_URL"))
-
 	linksHTML := utils.GetLinksFromHTML(html)
 	photoReports := utils.GetAllInformation(linksHTML)
 	titles := getTitlesFromPhotoReports(photoReports)
 	tgMessageData := utils.GenerateMapOfNewData(titles, photoReports)
 
-	var titles []string
+	exitIfNoNewItems(tgMessageData)
 
 	telegram.SendMessagesWithNewPhotoReports(tgMessageData)
 	utils.PutTitlesIntoCache(titles)
 }
 
-	doesntHaveNewItems, tgMessageData := utils.GenerateMapOfNewData(titles, photoReports)
-
-	if doesntHaveNewItems {
+func exitIfNoNewItems(tgMessageData []models.PhotoReport) {
+	if tgMessageData == nil {
 		log.Print("There are not new photo reports")
-		return
+		os.Exit(1)
+	}
+}
+
+func getTitlesFromPhotoReports(photoReports []models.PhotoReport) []string {
+	var titles []string
+
+	for _, photoReport := range photoReports {
+		titles = append(titles, photoReport.Title)
 	}
 
-	fmt.Printf("%#v\n", tgMessageData)
-
-	// 2. send message with image, title and link
-	// telegram.SendMessage("Hello man 2")
-
-	//utils.PutTitlesIntoCache(titles)
+	return titles
 }
