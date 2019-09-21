@@ -1,6 +1,7 @@
 package telegram
 
 import (
+	"fmt"
 	"github.com/SerhiiCho/shoshka_go/models"
 	"os"
 
@@ -20,6 +21,6 @@ func SendMessage(message string) {
 
 func SendMessagesWithNewPhotoReports(newReports []models.PhotoReport) {
 	for _, report := range newReports {
-		SendMessage(report.Title)
+		SendMessage(fmt.Sprintf("Новый фотоотчет!\n\n%s\n\n%s", report.Title, report.URL))
 	}
 }
