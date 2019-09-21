@@ -18,7 +18,7 @@ func init() {
 func saveTitlesIntoFile(titles []string) {
 	file, _ := json.MarshalIndent(titles, "", " ")
 	err := ioutil.WriteFile("./storage/titles", file, 0644)
-	utils.HandleError(err, "Can't write to a file strage/titles")
+	utils.HandleError(err, "Can't write to a file storage/titles")
 }
 
 func main() {
@@ -28,7 +28,7 @@ func main() {
 	linksHTML := utils.GetLinksFromHTML(html)
 	photoReports := utils.GetAllInformation(linksHTML)
 
-	titles := []string{}
+	var titles []string
 
 	for _, photoReport := range photoReports {
 		titles = append(titles, photoReport.Title)
@@ -37,8 +37,11 @@ func main() {
 	}
 
 	oldContext := utils.FileGetContents("./storage/titles")
-	oldSlice := []string{}
-	json.Unmarshal([]byte(oldContext), &oldSlice)
+	var oldSlice []string
+	err := json.Unmarshal([]byte(oldContext), &oldSlice)
+
+	utils.HandleError(err, "Unmarshal method returned error")
+
 	diff := utils.GetUniqueItem(titles, oldSlice)
 
 	if len(diff) == 0 {
@@ -47,5 +50,5 @@ func main() {
 	}
 
 	fmt.Printf("%#v\n", diff)
-	// saveTitlesIntoFile(titles)
+	//saveTitlesIntoFile(titles)
 }
