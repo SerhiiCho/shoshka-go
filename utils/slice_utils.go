@@ -20,5 +20,11 @@ func GetUniqueItem(slice1 []string, slice2 []string) []string {
 		}
 	}
 
+	for _, item2 := range slice2 {
+		if !Contains(slice1, item2) {
+			result = append(result, item2)
+		}
+	}
+
 	return result
 }

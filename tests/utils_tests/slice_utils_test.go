@@ -22,3 +22,34 @@ func TestContains(t *testing.T) {
 		}
 	})
 }
+
+func TestGetUniqueItem(t *testing.T) {
+	slice1 := []string{"hello", "another", "nice", "cool"}
+	slice2 := []string{"hello", "another", "nice", "cool", "unique"}
+	expect := []string{"unique"}
+
+	t.Run("returns unique item", func(t *testing.T) {
+		result := utils.GetUniqueItem(slice2, slice1)
+
+		if result[0] != expect[0] {
+			t.Errorf("result must be %v", expect)
+		}
+	})
+
+	t.Run("returns unique item with different order of args", func(t *testing.T) {
+		result := utils.GetUniqueItem(slice1, slice2)
+
+		if result[0] != expect[0] {
+			t.Errorf("result must be %v", expect)
+		}
+	})
+
+	t.Run("returns nil if no diff", func(t *testing.T) {
+		sameSlice := []string{"hello", "another", "nice", "cool"}
+		result := utils.GetUniqueItem(slice1, sameSlice)
+
+		if result != nil {
+			t.Error("result must return nil")
+		}
+	})
+}
