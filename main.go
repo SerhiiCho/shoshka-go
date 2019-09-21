@@ -6,12 +6,13 @@ import (
 	"io/ioutil"
 	"os"
 
-	"github.com/SerhiiCho/shoshka_go/system"
 	"github.com/SerhiiCho/shoshka_go/utils"
+	"github.com/joho/godotenv"
 )
 
 func init() {
-	system.LoadEnvPackage()
+	err := godotenv.Load()
+	utils.HandleError(err, "Error loading .env file")
 }
 
 func saveTitlesIntoFile(titles []string) {
@@ -43,10 +44,10 @@ func getUniqueItem(slice1 []string, slice2 []string) []string {
 
 func main() {
 	// telegram.SendMessage("Hello man 2")
-	html := system.GetHTMLFromTargetURL(os.Getenv("BOT_TARGET_URL"))
+	html := utils.GetHTMLFromTargetURL(os.Getenv("BOT_TARGET_URL"))
 
-	linksHTML := system.GetLinksFromHTML(html)
-	photoReports := system.GetAllInformation(linksHTML)
+	linksHTML := utils.GetLinksFromHTML(html)
+	photoReports := utils.GetAllInformation(linksHTML)
 
 	titles := []string{}
 
