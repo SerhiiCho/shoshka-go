@@ -17,7 +17,7 @@ func init() {
 
 func saveTitlesIntoFile(titles []string) {
 	file, _ := json.MarshalIndent(titles, "", " ")
-	err := ioutil.WriteFile("hello", file, 0644)
+	err := ioutil.WriteFile("./storage/titles", file, 0644)
 	utils.HandleError(err, "Can't write to a file")
 }
 
@@ -57,7 +57,7 @@ func main() {
 		// log.Println(photoReport.Title)
 	}
 
-	oldContext := utils.FileGetContents("hello")
+	oldContext := utils.FileGetContents("./storage/titles")
 	oldSlice := []string{}
 	json.Unmarshal([]byte(oldContext), &oldSlice)
 	// saveTitlesIntoFile(titles)

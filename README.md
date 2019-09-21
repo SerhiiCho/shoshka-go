@@ -1,4 +1,4 @@
-![php revival](https://raw.githubusercontent.com/SerhiiCho/shoshka_go/master/.github/cover.jpg)
+![php revival](https://raw.githubusercontent.com/SerhiiCho/shoshka_go/master/storage/cover.jpg)
 
 # Telegram bot on Go lang
 
