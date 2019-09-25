@@ -20,6 +20,7 @@ func SendMessage(message string) {
 	_, _ = bot.Send(msg)
 }
 
+// SendMessagesWithNewPhotoReports sends telegram message
 func SendMessagesWithNewPhotoReports(newReports []models.PhotoReport) {
 	for _, report := range newReports {
 		SendMessage(fmt.Sprintf("Новый фотоотчет!\n\n%s\n\n%s", report.Title, report.URL))

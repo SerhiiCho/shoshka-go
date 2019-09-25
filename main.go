@@ -1,12 +1,13 @@
 package main
 
 import (
+	"log"
+	"os"
+
 	"github.com/SerhiiCho/shoshka-go/models"
 	"github.com/SerhiiCho/shoshka-go/telegram"
 	"github.com/SerhiiCho/shoshka-go/utils"
 	"github.com/joho/godotenv"
-	"log"
-	"os"
 )
 
 func init() {
