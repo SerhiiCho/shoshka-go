@@ -1,7 +1,7 @@
 package utils
 
 import (
-	"github.com/SerhiiCho/shoshka_go/models"
+	"github.com/SerhiiCho/shoshka-go/models"
 )
 
 // Contains function returns true if slice contains given item

@@ -3,7 +3,7 @@ package utils
 import (
 	"regexp"
 
-	"github.com/SerhiiCho/shoshka_go/models"
+	"github.com/SerhiiCho/shoshka-go/models"
 )
 
 // GetLinksFromHTML returns all html links

@@ -3,7 +3,7 @@ package utilstests
 import (
 	"testing"
 
-	"github.com/SerhiiCho/shoshka_go/utils"
+	"github.com/SerhiiCho/shoshka-go/utils"
 )
 
 func TestGetLinksFromHTML(t *testing.T) {

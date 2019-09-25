@@ -2,10 +2,11 @@ package telegram
 
 import (
 	"fmt"
-	"github.com/SerhiiCho/shoshka_go/models"
 	"os"
 
-	"github.com/SerhiiCho/shoshka_go/utils"
+	"github.com/SerhiiCho/shoshka-go/models"
+
+	"github.com/SerhiiCho/shoshka-go/utils"
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api"
 )
 

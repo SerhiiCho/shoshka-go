@@ -1,9 +1,9 @@
 package main
 
 import (
-	"github.com/SerhiiCho/shoshka_go/models"
-	"github.com/SerhiiCho/shoshka_go/telegram"
-	"github.com/SerhiiCho/shoshka_go/utils"
+	"github.com/SerhiiCho/shoshka-go/models"
+	"github.com/SerhiiCho/shoshka-go/telegram"
+	"github.com/SerhiiCho/shoshka-go/utils"
 	"github.com/joho/godotenv"
 	"log"
 	"os"

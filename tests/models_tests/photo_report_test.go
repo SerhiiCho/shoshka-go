@@ -3,7 +3,7 @@ package modelstests
 import (
 	"testing"
 
-	"github.com/SerhiiCho/shoshka_go/models"
+	"github.com/SerhiiCho/shoshka-go/models"
 )
 
 func TestPhotoReport_can_hold_information(t *testing.T) {

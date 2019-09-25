@@ -4,7 +4,7 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/SerhiiCho/shoshka_go/utils"
+	"github.com/SerhiiCho/shoshka-go/utils"
 )
 
 func getChatID() int64 {

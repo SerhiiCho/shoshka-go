@@ -1,8 +1,9 @@
 package utilstests
 
 import (
-	"github.com/SerhiiCho/shoshka_go/utils"
 	"testing"
+
+	"github.com/SerhiiCho/shoshka-go/utils"
 )
 
 func TestContains(t *testing.T) {
