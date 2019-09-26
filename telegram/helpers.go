@@ -16,14 +16,11 @@ func getChatID() int64 {
 }
 
 // GenerateMessagesWithNewPhotoReports generates telegram message for new photo report
-func GenerateMessagesWithNewPhotoReports() string {
-	msg := ""
-
+func GenerateMessagesWithNewPhotoReports(messagesChan chan<- string) {
 	for _, report := range GetTelegramMessageIfExists() {
-		msg += fmt.Sprintf("Новый фотоотчет!\n\n%s\n\n%s", report.Title, report.URL)
+		messagesChan <- fmt.Sprintf("Новый фотоотчет!\n\n%s\n\n%s", report.Title, report.URL)
 	}
-
-	return msg
+	close(messagesChan)
 }
 
 // GetTelegramMessageIfExists makes request gets data and searches for new Photo Reports

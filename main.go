@@ -12,7 +12,9 @@ func init() {
 }
 
 func main() {
-	msg := telegram.GenerateMessagesWithNewPhotoReports()
+	messagesChan := make(chan string)
 
-	telegram.SendMessage(msg)
+	go telegram.GenerateMessagesWithNewPhotoReports(messagesChan)
+
+	telegram.SendMessage(<-messagesChan)
 }
