@@ -16,5 +16,7 @@ func main() {
 
 	go telegram.GenerateMessagesWithNewPhotoReports(messagesChan)
 
-	telegram.SendMessage(<-messagesChan)
+	for msg := range messagesChan {
+		telegram.SendMessage(msg)
+	}
 }

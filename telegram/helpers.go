@@ -31,7 +31,9 @@ func GetTelegramMessageIfExists() []models.PhotoReport {
 	titles := utils.GetTitlesFromPhotoReports(photoReports)
 	tgMessageData := utils.GenerateMapOfNewData(titles, photoReports)
 
-	defer utils.PutTitlesIntoCache(titles)
+	if len(titles) > 0 {
+		defer utils.PutTitlesIntoCache(titles)
+	}
 
 	return tgMessageData
 }
