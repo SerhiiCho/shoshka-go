@@ -1,5 +1,8 @@
 ![php revival](https://raw.githubusercontent.com/SerhiiCho/shoshka-go/master/storage/cover.jpg)
 
-# Telegram bot on Go lang
+# Telegram bot
 
-This bot checks for new images from target site, and if there are new images. It will sent telegram message to a site administrator in order to notify him to upload those new images on his site.
+This program was created for a linux cron job, that makes checks every certain period of time for 2 things
+
+* Checks for new posts on target site, and if there are new posts. It will notify a site administrator.
+* Checks if there are any new errors in error_log on production server, if it is, notify a site administrator
