@@ -1,2 +1,2 @@
-/.env
 /storage/titles
+/config/config.go
