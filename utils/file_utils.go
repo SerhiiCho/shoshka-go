@@ -28,9 +28,9 @@ func GetCached(fileName string) []string {
 	return oldSlice
 }
 
-// PutTitlesIntoCache insert titles into a file in JSON
-func PutTitlesIntoCache(titles []string) {
-	file, _ := json.MarshalIndent(titles, "", " ")
-	err := ioutil.WriteFile("./storage/titles", file, 0644)
-	HandleError(err, "Can't write to a file storage/titles")
+// PutIntoCache insert given slice into a file in JSON
+func PutIntoCache(items []string, fileName string) {
+	file, _ := json.MarshalIndent(items, "", " ")
+	err := ioutil.WriteFile("./storage/"+fileName, file, 0644)
+	HandleError(err, "Can't write to a file storage/"+fileName)
 }
