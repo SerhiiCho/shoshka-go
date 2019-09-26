@@ -1,7 +1,7 @@
 package main
 
 import (
-	"log"
+	"fmt"
 
 	"github.com/SerhiiCho/shoshka-go/telegram"
 	"github.com/SerhiiCho/shoshka-go/utils"
@@ -14,12 +14,23 @@ func init() {
 }
 
 func main() {
-	messagesChan := make(chan string)
+	doneChan := make(chan int)
+	reportsMessagesChan := make(chan string)
+	errorsMessagesChan := make(chan string)
 
-	go telegram.GetMessagesWithNewReports(messagesChan)
+	go telegram.GetMessagesWithNewReports(reportsMessagesChan, doneChan)
+	go telegram.GetMessagesWithNewErrors(errorsMessagesChan, doneChan)
 
-	for msg := range messagesChan {
-		// telegram.SendMessage(msg)
-		log.Println(msg)
+	for i := 2; i > 0; {
+		select {
+		case msg1 := <-reportsMessagesChan:
+			fmt.Println(msg1)
+			// telegram.SendMessage(msg1)
+		case msg2 := <-errorsMessagesChan:
+			fmt.Println(msg2)
+			// telegram.SendMessage(msg2)
+		case <-doneChan:
+			i--
+		}
 	}
 }

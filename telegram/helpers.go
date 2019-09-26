@@ -20,6 +20,8 @@ func GetMessagesWithNewReports(messagesChan chan<- string, doneChan chan<- int) 
 	for _, report := range getReportsIfExist() {
 		messagesChan <- fmt.Sprintf("Новый фотоотчет!\n\n%s\n\n%s", report.Title, report.URL)
 	}
+	doneChan <- 1
+}
 
 // GetMessagesWithNewErrors puts messages into a chanel
 func GetMessagesWithNewErrors(messagesChan chan<- string, doneChan chan<- int) {
