@@ -20,7 +20,27 @@ func GetMessagesWithNewReports(messagesChan chan<- string, doneChan chan<- int) 
 	for _, report := range getReportsIfExist() {
 		messagesChan <- fmt.Sprintf("Новый фотоотчет!\n\n%s\n\n%s", report.Title, report.URL)
 	}
-	close(messagesChan)
+
+// GetMessagesWithNewErrors puts messages into a chanel
+func GetMessagesWithNewErrors(messagesChan chan<- string, doneChan chan<- int) {
+	for _, errorMessage := range getErrorsIfExist() {
+		messagesChan <- fmt.Sprintf("Ошибка на Шобаре!\n\n%s", errorMessage)
+	}
+	doneChan <- 1
+}
+
+func getErrorsIfExist() []string {
+	errorsContext := utils.FileGetContents(os.Getenv("BOT_ERROR_LOG_PATH"))
+
+	newErrors := utils.ParseErrors(errorsContext)
+	oldErrors := utils.GetCached("errors")
+	uniqueErrors := utils.GetUniqueItem(oldErrors, newErrors)
+
+	if len(uniqueErrors) > 0 {
+		defer utils.PutIntoCache(newErrors, "errors")
+	}
+
+	return uniqueErrors
 }
 
 // getReportsIfExist makes request gets data and searches for new Photo Reports
