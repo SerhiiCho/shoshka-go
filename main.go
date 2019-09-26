@@ -7,7 +7,7 @@ import (
 )
 
 func init() {
-	err := godotenv.Load(".env")
+	err := godotenv.Load("/home/shobarco/other/shoshka-go/.env")
 	utils.HandleError(err, "Error loading .env file")
 }
 
