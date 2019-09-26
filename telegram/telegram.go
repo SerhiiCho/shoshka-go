@@ -2,7 +2,7 @@ package telegram
 
 import (
 	"fmt"
-	"github.com/SerhiiCho/shoshka-go/config"
+	"os"
 	"github.com/SerhiiCho/shoshka-go/utils"
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api"
 )
@@ -14,7 +14,7 @@ func SendMessage(message string) {
 		return
 	}
 
-	bot, err := tgbotapi.NewBotAPI(config.Config["botToken"])
+	bot, err := tgbotapi.NewBotAPI(os.Getenv("BOT_TOKEN"))
 	utils.HandleError(err, "Bot init error")
 
 	msg := tgbotapi.NewMessage(getChatID(), message)

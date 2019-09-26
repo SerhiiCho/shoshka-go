@@ -2,15 +2,15 @@ package telegram
 
 import (
 	"fmt"
-	"github.com/SerhiiCho/shoshka-go/config"
 	"strconv"
+	"os"
 
 	"github.com/SerhiiCho/shoshka-go/models"
 	"github.com/SerhiiCho/shoshka-go/utils"
 )
 
 func getChatID() int64 {
-	chatID, err := strconv.ParseInt(config.Config["botChatID"], 10, 64)
+	chatID, err := strconv.ParseInt(os.Getenv("BOT_CHAT_ID"), 10, 64)
 	utils.HandleError(err, "Cannot convert chat id to integer")
 	return chatID
 }
@@ -25,7 +25,7 @@ func GenerateMessagesWithNewPhotoReports(messagesChan chan<- string) {
 
 // GetTelegramMessageIfExists makes request gets data and searches for new Photo Reports
 func GetTelegramMessageIfExists() []models.PhotoReport {
-	html := utils.GetHTMLFromTargetURL(config.Config["botTargetURL"])
+	html := utils.GetHTMLFromTargetURL(os.Getenv("BOT_TARGET_URL"))
 	linksHTML := utils.GetLinksFromHTML(html)
 	photoReports := utils.GetAllInformation(linksHTML)
 	titles := utils.GetTitlesFromPhotoReports(photoReports)
