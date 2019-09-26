@@ -15,16 +15,16 @@ func getChatID() int64 {
 	return chatID
 }
 
-// GetMessagesWithNewReports generates telegram message for new photo report
-func GetMessagesWithNewReports(messagesChan chan<- string) {
-	for _, report := range GetTelegramMessageIfExists() {
+// GetMessagesWithNewReports puts messages into a chanel
+func GetMessagesWithNewReports(messagesChan chan<- string, doneChan chan<- int) {
+	for _, report := range getReportsIfExist() {
 		messagesChan <- fmt.Sprintf("Новый фотоотчет!\n\n%s\n\n%s", report.Title, report.URL)
 	}
 	close(messagesChan)
 }
 
-// GetTelegramMessageIfExists makes request gets data and searches for new Photo Reports
-func GetTelegramMessageIfExists() []models.PhotoReport {
+// getReportsIfExist makes request gets data and searches for new Photo Reports
+func getReportsIfExist() []models.PhotoReport {
 	html := utils.GetHTMLFromTargetURL(os.Getenv("BOT_TARGET_URL"))
 	linksHTML := utils.GetLinksFromHTML(html)
 	photoReports := utils.GetAllInformation(linksHTML)
