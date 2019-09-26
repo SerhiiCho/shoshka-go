@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"os"
 	"strconv"
+	"strings"
+	"time"
 
 	"github.com/SerhiiCho/shoshka-go/models"
 	"github.com/SerhiiCho/shoshka-go/utils"
@@ -15,11 +17,21 @@ func getChatID() int64 {
 	return chatID
 }
 
+func todayIsReportCheckDay() bool {
+	today := time.Now().Weekday().String()
+	allowedDays := strings.Split(os.Getenv("BOT_DAYS_FOR_REPORT_CHECK"), ",")
+
+	return utils.Contains(allowedDays, today)
+}
+
 // GetMessagesWithNewReports puts messages into a chanel
 func GetMessagesWithNewReports(messagesChan chan<- string, doneChan chan<- int) {
-	for _, report := range getReportsIfExist() {
-		messagesChan <- fmt.Sprintf("Новый фотоотчет!\n\n%s\n\n%s", report.Title, report.URL)
+	if todayIsReportCheckDay() {
+		for _, report := range getReportsIfExist() {
+			messagesChan <- fmt.Sprintf("Новый фотоотчет!\n\n%s\n\n%s", report.Title, report.URL)
+		}
 	}
+
 	doneChan <- 1
 }
 
