@@ -46,7 +46,7 @@ func GetIndexOfSliceItem(slice []string, value string) int {
 
 // GenerateMapOfNewData returns nil if there are no new photo reports
 func GenerateMapOfNewData(titles []string, photoReports []models.PhotoReport) []models.PhotoReport {
-	oldTitles := GetCachedTitles()
+	oldTitles := GetCached("titles")
 	newPhotoReportTitles := GetUniqueItem(titles, oldTitles)
 
 	if len(newPhotoReportTitles) == 0 {

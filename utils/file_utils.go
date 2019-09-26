@@ -17,11 +17,11 @@ func FileGetContents(filePath string) string {
 	return string(fileText)
 }
 
-// GetCachedTitles returns cache
-func GetCachedTitles() []string {
+// GetCached returns cache
+func GetCached(fileName string) []string {
 	var oldSlice []string
 
-	oldContext := FileGetContents("./storage/titles")
+	oldContext := FileGetContents("./storage/" + fileName)
 	err := json.Unmarshal([]byte(oldContext), &oldSlice)
 	HandleError(err, "Unmarshal method returned error")
 
