@@ -1,8 +1,6 @@
 package utils
 
 import (
-	"log"
-
 	"github.com/SerhiiCho/shoshka-go/models"
 )
 
@@ -57,8 +55,6 @@ func GenerateMapOfNewData(titles []string, photoReports []models.PhotoReport) []
 
 	var tgMessageData []models.PhotoReport
 
-	log.Printf("%#v", newPhotoReportTitles)
-
 	for _, newReportTitle := range newPhotoReportTitles {
 		index := GetIndexOfSliceItem(titles, newReportTitle)
 
@@ -74,4 +70,15 @@ func GenerateMapOfNewData(titles []string, photoReports []models.PhotoReport) []
 	}
 
 	return tgMessageData
+}
+
+// GetTitlesFromPhotoReports returns only titles from slice of messsage data
+func GetTitlesFromPhotoReports(photoReports []models.PhotoReport) []string {
+	var titles []string
+
+	for _, photoReport := range photoReports {
+		titles = append(titles, photoReport.Title)
+	}
+
+	return titles
 }

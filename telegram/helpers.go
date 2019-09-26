@@ -1,9 +1,11 @@
 package telegram
 
 import (
+	"fmt"
 	"os"
 	"strconv"
 
+	"github.com/SerhiiCho/shoshka-go/models"
 	"github.com/SerhiiCho/shoshka-go/utils"
 )
 
@@ -24,3 +26,15 @@ func GenerateMessagesWithNewPhotoReports() string {
 	return msg
 }
 
+// GetTelegramMessageIfExists makes request gets data and searches for new Photo Reports
+func GetTelegramMessageIfExists() []models.PhotoReport {
+	html := utils.GetHTMLFromTargetURL(os.Getenv("BOT_TARGET_URL"))
+	linksHTML := utils.GetLinksFromHTML(html)
+	photoReports := utils.GetAllInformation(linksHTML)
+	titles := utils.GetTitlesFromPhotoReports(photoReports)
+	tgMessageData := utils.GenerateMapOfNewData(titles, photoReports)
+
+	defer utils.PutTitlesIntoCache(titles)
+
+	return tgMessageData
+}
