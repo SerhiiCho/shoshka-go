@@ -26,7 +26,7 @@ func GetMessagesWithNewReports(messagesChan chan<- string, doneChan chan<- int) 
 // GetMessagesWithNewErrors puts messages into a chanel
 func GetMessagesWithNewErrors(messagesChan chan<- string, doneChan chan<- int) {
 	for _, errorMessage := range getErrorsIfExist() {
-		messagesChan <- fmt.Sprintf("Ошибка на Шобаре!\n\n%s", errorMessage)
+		messagesChan <- fmt.Sprintf("Ошибка на Шобаре!\nhttps://shobar.com.ua/\n\n%s", errorMessage)
 	}
 	doneChan <- 1
 }

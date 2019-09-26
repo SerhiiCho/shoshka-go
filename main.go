@@ -1,8 +1,6 @@
 package main
 
 import (
-	"fmt"
-
 	"github.com/SerhiiCho/shoshka-go/telegram"
 	"github.com/SerhiiCho/shoshka-go/utils"
 	"github.com/joho/godotenv"
@@ -24,11 +22,9 @@ func main() {
 	for i := 2; i > 0; {
 		select {
 		case msg1 := <-reportsMessagesChan:
-			fmt.Println(msg1)
-			// telegram.SendMessage(msg1)
+			telegram.SendMessage(msg1)
 		case msg2 := <-errorsMessagesChan:
-			fmt.Println(msg2)
-			// telegram.SendMessage(msg2)
+			telegram.SendMessage(msg2)
 		case <-doneChan:
 			i--
 		}
