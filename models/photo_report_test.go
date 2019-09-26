@@ -1,13 +1,11 @@
-package modelstests
+package models
 
 import (
 	"testing"
-
-	"github.com/SerhiiCho/shoshka-go/models"
 )
 
 func TestPhotoReport_can_hold_information(t *testing.T) {
-	photoReport := models.PhotoReport{
+	photoReport := PhotoReport{
 		Title: "Hello world",
 		Image: "http://test.com",
 		URL:   "http://url.com",
