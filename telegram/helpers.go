@@ -2,8 +2,8 @@ package telegram
 
 import (
 	"fmt"
-	"strconv"
 	"os"
+	"strconv"
 
 	"github.com/SerhiiCho/shoshka-go/models"
 	"github.com/SerhiiCho/shoshka-go/utils"
@@ -15,8 +15,8 @@ func getChatID() int64 {
 	return chatID
 }
 
-// GenerateMessagesWithNewPhotoReports generates telegram message for new photo report
-func GenerateMessagesWithNewPhotoReports(messagesChan chan<- string) {
+// GetMessagesWithNewReports generates telegram message for new photo report
+func GetMessagesWithNewReports(messagesChan chan<- string) {
 	for _, report := range GetTelegramMessageIfExists() {
 		messagesChan <- fmt.Sprintf("Новый фотоотчет!\n\n%s\n\n%s", report.Title, report.URL)
 	}

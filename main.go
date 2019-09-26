@@ -1,6 +1,8 @@
 package main
 
 import (
+	"log"
+
 	"github.com/SerhiiCho/shoshka-go/telegram"
 	"github.com/SerhiiCho/shoshka-go/utils"
 	"github.com/joho/godotenv"
@@ -14,9 +16,10 @@ func init() {
 func main() {
 	messagesChan := make(chan string)
 
-	go telegram.GenerateMessagesWithNewPhotoReports(messagesChan)
+	go telegram.GetMessagesWithNewReports(messagesChan)
 
 	for msg := range messagesChan {
-		telegram.SendMessage(msg)
+		// telegram.SendMessage(msg)
+		log.Println(msg)
 	}
 }
