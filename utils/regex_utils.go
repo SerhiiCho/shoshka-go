@@ -28,3 +28,8 @@ func GetAllInformation(html []string) []models.PhotoReport {
 
 	return result
 }
+
+// ParseErrors returns slice of errors
+func ParseErrors(text string) []string {
+	return regexp.MustCompile("\\[([A-z0-9 :-]+)\\] (.*)").FindAllString(text, -1)
+}

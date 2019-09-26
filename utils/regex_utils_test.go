@@ -38,3 +38,12 @@ func TestGetAllInformation(t *testing.T) {
 		}
 	})
 }
+
+func TestParseErrors(t *testing.T) {
+	errorsContext := FileGetContents("../storage/test_files/error_log")
+	result := ParseErrors(errorsContext)
+
+	if len(result) != 2 {
+		t.Errorf("Result must returns slice with 2 items but %v returned", len(result))
+	}
+}
