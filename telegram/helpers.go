@@ -32,7 +32,6 @@ func GetMessagesWithNewReports(messagesChan chan<- string, doneChan chan<- int) 
 			messagesChan <- fmt.Sprintf("Новый фотоотчет!\n\n%s\n\n%s", report.Title, report.URL)
 		}
 	}
-
 	doneChan <- 1
 }
 

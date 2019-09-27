@@ -24,3 +24,12 @@ func TestTodayIsReportCheckDay(t *testing.T) {
 		})
 	}
 }
+
+func TestGetChatId(t *testing.T) {
+	os.Setenv("BOT_CHAT_ID", "543210")
+	chatID := getChatID()
+
+	if chatID != 543210 {
+		t.Errorf("The result of getChatID function must be 543210, but %v returned", chatID)
+	}
+}

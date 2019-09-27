@@ -3,6 +3,7 @@ package telegram
 import (
 	"fmt"
 	"os"
+
 	"github.com/SerhiiCho/shoshka-go/utils"
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api"
 )
@@ -19,5 +20,6 @@ func SendMessage(message string) {
 
 	msg := tgbotapi.NewMessage(getChatID(), message)
 
-	_, _ = bot.Send(msg)
+	_, err = bot.Send(msg)
+	utils.HandleError(err, "Error sending telegram message")
 }
