@@ -1,10 +1,10 @@
 ![php revival](https://raw.githubusercontent.com/SerhiiCho/shoshka-go/master/storage/cover.jpg)
 
-<div style="text-align:center">
+<p align="center">
     <a title="Latest push build on default branch: created">
         <img src="https://travis-ci.org/SerhiiCho/shoshka-go.svg?branch=master" alt="build:created">
     </a>
-</div>
+</p>
 
 # Telegram bot
 
