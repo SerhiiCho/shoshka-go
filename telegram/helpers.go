@@ -65,7 +65,7 @@ func getErrorsIfExist() []string {
 	oldErrors := utils.GetCached("errors")
 	uniqueErrors := utils.GetUniqueItem(oldErrors, newErrors)
 
-	if len(uniqueErrors) > 0 {
+	if newErrors != nil && len(uniqueErrors) > 0 {
 		defer utils.PutIntoCache(newErrors, "errors")
 	}
 
