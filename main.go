@@ -17,9 +17,9 @@ func main() {
 	var messages []string
 
 	if os.Args[1] == "errors" {
-		messages = telegram.GetMessagesWithNewReports()
-	} else if os.Args[1] == "titles" {
 		messages = telegram.GetMessagesWithNewErrors()
+	} else if os.Args[1] == "titles" {
+		messages = telegram.GetMessagesWithNewReports()
 	} else if os.Args[1] == "ping" {
 		messages = telegram.GetMessageIfPingIsNotSuccessful()
 	}
