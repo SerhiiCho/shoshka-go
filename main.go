@@ -1,6 +1,8 @@
 package main
 
 import (
+	"os"
+
 	"github.com/SerhiiCho/shoshka-go/telegram"
 	"github.com/SerhiiCho/shoshka-go/utils"
 	"github.com/joho/godotenv"
@@ -12,13 +14,17 @@ func init() {
 }
 
 func main() {
-	var allMessages []string
+	var messages []string
 
-	allMessages = append(allMessages, telegram.GetMessagesWithNewReports()...)
-	allMessages = append(allMessages, telegram.GetMessagesWithNewErrors()...)
-	allMessages = append(allMessages, telegram.GetMessageIfPingIsNotSuccessful()...)
+	if os.Args[1] == "errors" {
+		messages = telegram.GetMessagesWithNewReports()
+	} else if os.Args[1] == "titles" {
+		messages = telegram.GetMessagesWithNewErrors()
+	} else if os.Args[1] == "ping" {
+		messages = telegram.GetMessageIfPingIsNotSuccessful()
+	}
 
-	for _, msg := range allMessages {
+	for _, msg := range messages {
 		telegram.SendMessage(msg)
 	}
 }
