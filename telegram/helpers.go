@@ -38,12 +38,13 @@ func GetMessagesWithNewReports(messagesChan chan<- string, doneChan chan<- int) 
 
 // GetMessageIfPingIsNotSuccessful returns error message if ping is not successfull
 func GetMessageIfPingIsNotSuccessful(messagesChan chan<- string, doneChan chan<- int) {
-	out, err := exec.Command("ping", os.Getenv("SITE_ADDRESS"), "-c3").Output()
+	host := os.Getenv("SITE_ADDRESS")
+	out, err := exec.Command("ping", host, "-c2").Output()
 
 	cantPing := strings.Contains(string(out), "Destination Host Unreachable")
 
 	if cantPing || err != nil {
-		messagesChan <- "Host https://shobar.com.ua is not reachable"
+		messagesChan <- fmt.Sprintf("Host %s is not reachable", host)
 	}
 
 	doneChan <- 1
