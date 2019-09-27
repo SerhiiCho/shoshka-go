@@ -12,7 +12,7 @@ func FileGetContents(filePath string) string {
 	fileText, err := ioutil.ReadFile(filePath)
 
 	if err != nil {
-		print("File reading error")
+		print("File reading error\n")
 		return ""
 	}
 
