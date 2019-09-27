@@ -4,9 +4,7 @@
     </a>
 </p>
 
-```
-This program is written for a specific case and is not helpful for others, but of course you can do whatever you want with it if you wan
-```
+_This program is written for a specific case and is not helpful for others, but of course you can do whatever you want with it if you want_
 
 ## About
 
