@@ -36,8 +36,8 @@ func GetMessagesWithNewReports(messagesChan chan<- string, doneChan chan<- int) 
 	doneChan <- 1
 }
 
-// GetMessagesIfPingIsNotSuccessfull returns error message if ping is not successfull
-func GetMessagesIfPingIsNotSuccessfull(messagesChan chan<- string, doneChan chan<- int) {
+// GetMessageIfPingIsNotSuccessful returns error message if ping is not successfull
+func GetMessageIfPingIsNotSuccessful(messagesChan chan<- string, doneChan chan<- int) {
 	out, err := exec.Command("ping", os.Getenv("SITE_ADDRESS"), "-c3").Output()
 
 	cantPing := strings.Contains(string(out), "Destination Host Unreachable")
