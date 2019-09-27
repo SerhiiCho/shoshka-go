@@ -17,16 +17,17 @@ func getChatID() int64 {
 	return chatID
 }
 
-func todayIsReportCheckDay() bool {
-	today := time.Now().Weekday().String()
+// todayIsReportCheckDay returns true if current day is one of allowed for checking reports
+func todayIsReportCheckDay(today string) bool {
 	allowedDays := strings.Split(os.Getenv("BOT_DAYS_FOR_REPORT_CHECK"), ",")
-
 	return utils.Contains(allowedDays, today)
 }
 
 // GetMessagesWithNewReports puts messages into a chanel
 func GetMessagesWithNewReports(messagesChan chan<- string, doneChan chan<- int) {
-	if todayIsReportCheckDay() {
+	today := time.Now().Weekday().String()
+
+	if todayIsReportCheckDay(today) {
 		for _, report := range getReportsIfExist() {
 			messagesChan <- fmt.Sprintf("Новый фотоотчет!\n\n%s\n\n%s", report.Title, report.URL)
 		}
