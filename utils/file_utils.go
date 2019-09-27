@@ -2,7 +2,6 @@ package utils
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"path/filepath"
 )
@@ -29,7 +28,6 @@ func getAbsPathToStorageFile(filename string) string {
 func GetCached(fileName string) []string {
 	var oldSlice []string
 
-	fmt.Println(getAbsPathToStorageFile(fileName))
 	oldContext := FileGetContents(getAbsPathToStorageFile(fileName))
 	err := json.Unmarshal([]byte(oldContext), &oldSlice)
 
