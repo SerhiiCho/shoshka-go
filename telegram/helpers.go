@@ -72,7 +72,7 @@ func getErrorsIfExist() []string {
 	uniqueErrors := utils.GetUniqueItem(oldErrors, newErrors)
 
 	if newErrors != nil && len(uniqueErrors) > 0 {
-		defer utils.PutIntoCache(newErrors, "errors")
+		utils.PutIntoCache(newErrors, "errors")
 	}
 
 	return uniqueErrors
@@ -87,7 +87,7 @@ func getReportsIfExist() []models.PhotoReport {
 	tgMessageData := utils.GenerateMapOfNewData(titles, photoReports)
 
 	if len(titles) > 0 {
-		defer utils.PutIntoCache(titles, "titles")
+		utils.PutIntoCache(titles, "titles")
 	}
 
 	return tgMessageData
