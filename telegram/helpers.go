@@ -25,37 +25,43 @@ func todayIsReportCheckDay(today string) bool {
 }
 
 // GetMessagesWithNewReports puts messages into a chanel
-func GetMessagesWithNewReports(messagesChan chan<- string, doneChan chan<- int) {
+func GetMessagesWithNewReports() []string {
+	var messages []string
 	today := time.Now().Weekday().String()
 
 	if todayIsReportCheckDay(today) {
 		for _, report := range getReportsIfExist() {
-			messagesChan <- fmt.Sprintf("New Photo Report!\n\n%s\n\n%s", report.Title, report.URL)
+			messages = append(messages, fmt.Sprintf("New Photo Report!\n\n%s\n\n%s", report.Title, report.URL))
 		}
 	}
-	doneChan <- 1
+
+	return messages
 }
 
 // GetMessageIfPingIsNotSuccessful returns error message if ping is not successfull
-func GetMessageIfPingIsNotSuccessful(messagesChan chan<- string, doneChan chan<- int) {
+func GetMessageIfPingIsNotSuccessful() []string {
+	var messages []string
 	host := os.Getenv("SITE_ADDRESS")
 	out, err := exec.Command("ping", host, "-c2").Output()
 
 	cantPing := strings.Contains(string(out), "Destination Host Unreachable")
 
 	if cantPing || err != nil {
-		messagesChan <- fmt.Sprintf("Host %s is not reachable", host)
+		messages = append(messages, fmt.Sprintf("Host %s is not reachable", host))
 	}
 
-	doneChan <- 1
+	return messages
 }
 
 // GetMessagesWithNewErrors puts messages into a chanel
-func GetMessagesWithNewErrors(messagesChan chan<- string, doneChan chan<- int) {
+func GetMessagesWithNewErrors() []string {
+	var messages []string
+
 	for _, errorMessage := range getErrorsIfExist() {
-		messagesChan <- fmt.Sprintf("Error has occurred on https://shobar.com.ua\n\n%s", errorMessage)
+		messages = append(messages, fmt.Sprintf("Error has occurred on https://shobar.com.ua\n\n%s", errorMessage))
 	}
-	doneChan <- 1
+
+	return messages
 }
 
 func getErrorsIfExist() []string {

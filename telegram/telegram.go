@@ -8,7 +8,7 @@ import (
 )
 
 // SendMessage sends message in telegram chat
-func SendMessage(message string, disableWebPagePreview bool) {
+func SendMessage(message string) {
 	if len(message) == 0 {
 		return
 	}
@@ -17,7 +17,7 @@ func SendMessage(message string, disableWebPagePreview bool) {
 	utils.HandleError(err, "Bot init error")
 
 	msg := tgbotapi.NewMessage(getChatID(), message)
-	msg.DisableWebPagePreview = disableWebPagePreview
+	msg.DisableWebPagePreview = true
 
 	_, err = bot.Send(msg)
 	utils.HandleError(err, "Error sending telegram message")
