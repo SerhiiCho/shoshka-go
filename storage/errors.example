@@ -1,1 +1,4 @@
-[]
+[
+ "[04-Aug-2019 12:46:41 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_header() in /home/shobarco/public_html/wp-content/themes/shobar/index.php:5",
+ "[05-Aug-2019 07:18:41 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_header() in /home/shobarco/public_html/wp-content/themes/shobar/index.php:5"
+]
