@@ -1,7 +1,6 @@
 package telegram
 
 import (
-	"fmt"
 	"os"
 
 	"github.com/SerhiiCho/shoshka-go/utils"
@@ -9,9 +8,8 @@ import (
 )
 
 // SendMessage sends message in telegram chat
-func SendMessage(message string) {
+func SendMessage(message string, disableWebPagePreview bool) {
 	if len(message) == 0 {
-		fmt.Println("There are not new Photo Reports")
 		return
 	}
 
@@ -19,6 +17,7 @@ func SendMessage(message string) {
 	utils.HandleError(err, "Bot init error")
 
 	msg := tgbotapi.NewMessage(getChatID(), message)
+	msg.DisableWebPagePreview = disableWebPagePreview
 
 	_, err = bot.Send(msg)
 	utils.HandleError(err, "Error sending telegram message")
