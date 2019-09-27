@@ -1,12 +1,14 @@
-![php revival](https://raw.githubusercontent.com/SerhiiCho/shoshka-go/master/storage/cover.jpg)
-
 <p align="center">
     <a title="Latest push build on default branch: created">
         <img src="https://travis-ci.org/SerhiiCho/shoshka-go.svg?branch=master" alt="build:created">
     </a>
 </p>
 
-# Telegram bot
+```
+This program is written for a specific case and is not helpful for others, but of course you can do whatever you want with it if you wan
+```
+
+## About
 
 This program was created for running as a linux cron job, that makes checks every certain period of time for 3 things
 
