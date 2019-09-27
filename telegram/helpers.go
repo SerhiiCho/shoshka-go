@@ -3,6 +3,7 @@ package telegram
 import (
 	"fmt"
 	"os"
+	"os/exec"
 	"strconv"
 	"strings"
 	"time"
@@ -19,7 +20,7 @@ func getChatID() int64 {
 
 // todayIsReportCheckDay returns true if current day is one of allowed for checking reports
 func todayIsReportCheckDay(today string) bool {
-	allowedDays := strings.Split(os.Getenv("BOT_DAYS_FOR_REPORT_CHECK"), ",")
+	allowedDays := strings.Split(os.Getenv("DAYS_FOR_REPORT_CHECK"), ",")
 	return utils.Contains(allowedDays, today)
 }
 
@@ -29,22 +30,36 @@ func GetMessagesWithNewReports(messagesChan chan<- string, doneChan chan<- int) 
 
 	if todayIsReportCheckDay(today) {
 		for _, report := range getReportsIfExist() {
-			messagesChan <- fmt.Sprintf("Новый фотоотчет!\n\n%s\n\n%s", report.Title, report.URL)
+			messagesChan <- fmt.Sprintf("New Photo Report!\n\n%s\n\n%s", report.Title, report.URL)
 		}
 	}
+	doneChan <- 1
+}
+
+// GetMessageIfPingIsNotSuccessful returns error message if ping is not successfull
+func GetMessageIfPingIsNotSuccessful(messagesChan chan<- string, doneChan chan<- int) {
+	host := os.Getenv("SITE_ADDRESS")
+	out, err := exec.Command("ping", host, "-c2").Output()
+
+	cantPing := strings.Contains(string(out), "Destination Host Unreachable")
+
+	if cantPing || err != nil {
+		messagesChan <- fmt.Sprintf("Host %s is not reachable", host)
+	}
+
 	doneChan <- 1
 }
 
 // GetMessagesWithNewErrors puts messages into a chanel
 func GetMessagesWithNewErrors(messagesChan chan<- string, doneChan chan<- int) {
 	for _, errorMessage := range getErrorsIfExist() {
-		messagesChan <- fmt.Sprintf("Ошибка на Шобаре!\nhttps://shobar.com.ua/\n\n%s", errorMessage)
+		messagesChan <- fmt.Sprintf("Error has occurred on https://shobar.com.ua\n\n%s", errorMessage)
 	}
 	doneChan <- 1
 }
 
 func getErrorsIfExist() []string {
-	errorsContext := utils.FileGetContents(os.Getenv("BOT_ERROR_LOG_PATH"))
+	errorsContext := utils.FileGetContents(os.Getenv("ERROR_LOG_PATH"))
 
 	newErrors := utils.ParseErrors(errorsContext)
 	oldErrors := utils.GetCached("errors")

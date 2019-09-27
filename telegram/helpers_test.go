@@ -6,7 +6,7 @@ import (
 )
 
 func TestTodayIsReportCheckDay(t *testing.T) {
-	os.Setenv("BOT_DAYS_FOR_REPORT_CHECK", "Saturday,Sunday,Monday")
+	os.Setenv("DAYS_FOR_REPORT_CHECK", "Saturday,Sunday,Monday")
 
 	for _, dayOk := range []string{"Sunday", "Monday", "Saturday"} {
 		t.Run(dayOk+" day", func(t *testing.T) {
