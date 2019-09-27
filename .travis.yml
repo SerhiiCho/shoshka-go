@@ -4,7 +4,6 @@ go:
     - 1.13
 
 script:
-    - ls -hla && pwd
     - cp .env.example .env
     - cp storage/errors.example storage/errors
     - cp storage/titles.example storage/titles
