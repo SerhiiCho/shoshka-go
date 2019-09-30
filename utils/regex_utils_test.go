@@ -4,10 +4,10 @@ import (
 	"testing"
 )
 
-func TestGetLinksFromHTML(t *testing.T) {
+func TestGetPostsFromHTML(t *testing.T) {
 	t.Run("returns links", func(t *testing.T) {
 		fileText := FileGetContents("../storage/test_files/example")
-		result := GetLinksFromHTML(fileText)
+		result := GetPostsFromHTML(fileText)
 
 		if len(result) != 8 {
 			t.Error("GetLinksFromHTML must return slice with 8 items")
@@ -17,7 +17,7 @@ func TestGetLinksFromHTML(t *testing.T) {
 
 func TestGetAllInformation(t *testing.T) {
 	t.Run("returns slice with PhotoReport models", func(t *testing.T) {
-		links := []string{FileGetContents("../storage/test_files/link")}
+		links := []string{FileGetContents("../storage/test_files/item")}
 
 		title := "Title here"
 		img := "https://image.jpg"
