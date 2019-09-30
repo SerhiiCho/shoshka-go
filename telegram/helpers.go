@@ -58,7 +58,7 @@ func GetMessagesWithNewErrors() []string {
 	var messages []string
 
 	for _, errorMessage := range getErrorsIfExist() {
-		messages = append(messages, fmt.Sprintf("Error has occurred on https://shobar.com.ua\n\n%s", errorMessage))
+		messages = append(messages, fmt.Sprintf("Error has occurred on Shobar site https://shobar.com.ua\n\n%s", errorMessage))
 	}
 
 	return messages
