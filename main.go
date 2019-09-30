@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"os"
 
 	"github.com/SerhiiCho/shoshka-go/telegram"
@@ -16,11 +17,23 @@ func init() {
 func main() {
 	var messages []string
 
-	if os.Args[1] == "errors" {
+	if len(os.Args) <= 1 {
+		fmt.Print("\n|-----------------------------------------------|\n| You should specify 1 of 3 possible parameters |\n|-----------------------------------------------|\n\n")
+		os.Exit(1)
+	}
+
+	command := os.Args[1]
+
+	if !utils.Contains([]string{"errors", "titles", "ping"}, command) {
+		fmt.Printf("\n|-------------------------\n| Unknown parameter: %s\n|-------------------------\n\n", command)
+		os.Exit(1)
+	}
+
+	if command == "errors" {
 		messages = telegram.GetMessagesWithNewErrors()
-	} else if os.Args[1] == "titles" {
+	} else if command == "titles" {
 		messages = telegram.GetMessagesWithNewReports()
-	} else if os.Args[1] == "ping" {
+	} else if command == "ping" {
 		messages = telegram.GetMessageIfPingIsNotSuccessful()
 	}
 
