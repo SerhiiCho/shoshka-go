@@ -31,7 +31,7 @@ func GetMessagesWithNewReports() []string {
 
 	if todayIsReportCheckDay(today) {
 		for _, report := range getReportsIfExist() {
-			messages = append(messages, fmt.Sprintf("New Photo Report!\n\n%s\n\n%s", report.Title, report.URL))
+			messages = append(messages, fmt.Sprintf("New Photo Report!\n%s\n%s", report.Title, report.URL))
 		}
 	}
 
@@ -81,8 +81,8 @@ func getErrorsIfExist() []string {
 // getReportsIfExist makes request gets data and searches for new Photo Reports
 func getReportsIfExist() []models.PhotoReport {
 	html := utils.GetHTMLFromTargetURL(os.Getenv("BOT_TARGET_URL"))
-	linksHTML := utils.GetLinksFromHTML(html)
-	photoReports := utils.GetAllInformation(linksHTML)
+	posts := utils.GetPostsFromHTML(html)
+	photoReports := utils.GetAllInformation(posts)
 	titles := utils.GetTitlesFromPhotoReports(photoReports)
 	tgMessageData := utils.GenerateMapOfNewData(titles, photoReports)
 
