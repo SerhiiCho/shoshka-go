@@ -6,9 +6,9 @@ import (
 	"github.com/SerhiiCho/shoshka-go/models"
 )
 
-// GetLinksFromHTML returns all html links
-func GetLinksFromHTML(html string) []string {
-	linksRegex := "<a href=[\"'](.*?)[\"']\\sdata-rel=[\"']slide-.*?[\"']\\sclass=[\"']slide-image[\"']\\s.*?>.*?<\\/a>"
+// GetPostsFromHTML returns all html posts
+func GetPostsFromHTML(html string) []string {
+	linksRegex := "<article class(.|\n)*?<\\/article>"
 	return regexp.MustCompile(linksRegex).FindAllString(html, -1)
 }
 
