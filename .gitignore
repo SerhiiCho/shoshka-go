@@ -1,4 +1,5 @@
 /storage/titles
 /storage/errors
 /.env
-/vendor
+/vendor/*
+!vendor/modules.txt
