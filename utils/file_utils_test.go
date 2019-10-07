@@ -5,6 +5,7 @@ import (
 )
 
 func TestFileGetContents(t *testing.T) {
+	t.Parallel()
 	t.Run("returns file content", func(t *testing.T) {
 		result := FileGetContents("../storage/test_files/small_text")
 

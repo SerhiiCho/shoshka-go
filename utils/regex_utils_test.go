@@ -5,6 +5,7 @@ import (
 )
 
 func TestGetPostsFromHTML(t *testing.T) {
+	t.Parallel()
 	t.Run("returns links", func(t *testing.T) {
 		fileText := FileGetContents("../storage/test_files/example")
 		result := GetPostsFromHTML(fileText)
@@ -16,6 +17,7 @@ func TestGetPostsFromHTML(t *testing.T) {
 }
 
 func TestGetAllInformation(t *testing.T) {
+	t.Parallel()
 	t.Run("returns slice with PhotoReport models", func(t *testing.T) {
 		links := []string{FileGetContents("../storage/test_files/item")}
 
@@ -40,6 +42,7 @@ func TestGetAllInformation(t *testing.T) {
 }
 
 func TestParseErrors(t *testing.T) {
+	t.Parallel()
 	errorsContext := FileGetContents("../storage/test_files/error_log")
 	result := ParseErrors(errorsContext)
 

@@ -5,6 +5,7 @@ import (
 )
 
 func TestPhotoReport_can_hold_information(t *testing.T) {
+	t.Parallel()
 	photoReport := PhotoReport{
 		Title: "Hello world",
 		Image: "http://test.com",

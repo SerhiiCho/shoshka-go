@@ -6,6 +6,7 @@ import (
 )
 
 func TestTodayIsReportCheckDay(t *testing.T) {
+	t.Parallel()
 	os.Setenv("DAYS_FOR_REPORT_CHECK", "Saturday,Sunday,Monday")
 
 	for _, dayOk := range []string{"Sunday", "Monday", "Saturday"} {
@@ -26,6 +27,7 @@ func TestTodayIsReportCheckDay(t *testing.T) {
 }
 
 func TestGetChatId(t *testing.T) {
+	t.Parallel()
 	os.Setenv("BOT_CHAT_ID", "543210")
 	chatID := getChatID()
 
