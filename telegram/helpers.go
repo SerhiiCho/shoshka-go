@@ -51,8 +51,10 @@ func GetMessageIfPingIsNotSuccessful() []string {
 
 	if canPing && err == nil {
 		fmt.Printf("Host %s is reachable\n", host)
+		return messages
 	}
 
+	fmt.Printf("Host %s is reachable\n", host)
 	return append(messages, fmt.Sprintf("Host %s is not reachable", host))
 }
 
