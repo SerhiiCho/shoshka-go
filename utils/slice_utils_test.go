@@ -5,7 +5,6 @@ import (
 )
 
 func TestContains(t *testing.T) {
-	t.Parallel()
 	t.Run("must return true", func(t *testing.T) {
 		slice := []string{"hello", "many", "also", "hook"}
 
@@ -29,7 +28,6 @@ func TestGetUniqueItem(t *testing.T) {
 	expect := []string{"unique"}
 
 	t.Run("returns unique item", func(t *testing.T) {
-		t.Parallel()
 		result := GetUniqueItem(slice2, slice1)
 
 		if result[0] != expect[0] {
@@ -38,7 +36,6 @@ func TestGetUniqueItem(t *testing.T) {
 	})
 
 	t.Run("returns unique item with different order of args", func(t *testing.T) {
-		t.Parallel()
 		result := GetUniqueItem(slice1, slice2)
 
 		if result[0] != expect[0] {
@@ -47,7 +44,6 @@ func TestGetUniqueItem(t *testing.T) {
 	})
 
 	t.Run("returns nil if no diff", func(t *testing.T) {
-		t.Parallel()
 		sameSlice := []string{"hello", "another", "nice", "cool"}
 		result := GetUniqueItem(slice1, sameSlice)
 
