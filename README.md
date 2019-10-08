@@ -17,11 +17,11 @@ This program was created for running as a linux cron job, that makes checks ever
 ## Program takes one of 3 arguments
 
 ```bash
-./shoshka-go errors # for checking errors
+./shoshka-go errors # Checks error log file in provided path, if there are new errors added to it it will send a telegram message to a certain chat.
 ```
 ```bash
-./shoshka-go titles # for checking new photo reports
+./shoshka-go titles # Checks new photo reports at specific target site by parsing html and checking if there are new posts added. If new added, it takes the title, link and image url and sends it to a telegram chat.
 ```
 ```bash
-./shoshka-go ping # for checking the state of the production site by using ping
+./shoshka-go ping # Checks the state of the production server by using ping command. Sends 3 ping requests and if 1 of 3 requests is not successful, sends telegram message to a provided chat.
 ```

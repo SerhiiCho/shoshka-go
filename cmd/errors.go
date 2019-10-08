@@ -8,8 +8,7 @@ import (
 
 var errorsCmd = &cobra.Command{
 	Use:   "errors",
-	Short: "",
-	Long:  "",
+	Short: "Checks error log file in provided path, if there are new errors added to it it will send a telegram message to a certain chat.",
 	Run: func(cmd *cobra.Command, args []string) {
 		for _, msg := range telegram.GetMessagesWithNewErrors() {
 			telegram.SendMessage(msg)
