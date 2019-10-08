@@ -47,13 +47,13 @@ func GetMessageIfPingIsNotSuccessful() []string {
 	host := os.Getenv("SITE_ADDRESS")
 	out, err := exec.Command("ping", host, "-c2").Output()
 
-	cantPing := strings.Contains(string(out), "Destination Host Unreachable")
+	canPing := !strings.Contains(string(out), "Destination Host Unreachable")
 
-	if cantPing || err != nil {
-		messages = append(messages, fmt.Sprintf("Host %s is not reachable", host))
+	if canPing && err == nil {
+		fmt.Printf("Host %s is reachable\n", host)
 	}
 
-	return messages
+	return append(messages, fmt.Sprintf("Host %s is not reachable", host))
 }
 
 // GetMessagesWithNewErrors puts messages into a chanel
@@ -64,6 +64,12 @@ func GetMessagesWithNewErrors() []string {
 		messages = append(messages, fmt.Sprintf("Error has occurred on Shobar site https://shobar.com.ua\n\n%s", errorMessage))
 	}
 
+	if len(messages) == 0 {
+		fmt.Printf("There are no new errors in log file: %s\n", os.Getenv("ERROR_LOG_PATH"))
+		return messages
+	}
+
+	fmt.Printf("Found new errors in log file: %s\n", os.Getenv("ERROR_LOG_PATH"))
 	return messages
 }
 
