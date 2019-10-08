@@ -18,14 +18,22 @@ func main() {
 	var messages []string
 
 	if len(os.Args) <= 1 {
-		fmt.Print("\n|-----------------------------------------------|\n| You should specify 1 of 3 possible parameters |\n|-----------------------------------------------|\n\n")
+		fmt.Print(`
+			|-----------------------------------------------|
+			| You should specify 1 of 3 possible parameters |
+			|-----------------------------------------------|
+		`)
 		os.Exit(1)
 	}
 
 	command := os.Args[1]
 
 	if !utils.Contains([]string{"errors", "titles", "ping"}, command) {
-		fmt.Printf("\n|-------------------------\n| Unknown parameter: %s\n|-------------------------\n\n", command)
+		fmt.Printf(`
+			|-------------------------
+			| Unknown parameter: %s
+			|-------------------------\n\n
+		`, command)
 		os.Exit(1)
 	}
 
