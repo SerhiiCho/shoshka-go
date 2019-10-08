@@ -29,16 +29,19 @@ func GetMessagesWithNewReports() []string {
 	var messages []string
 	today := time.Now().Weekday().String()
 
-	if todayIsReportCheckDay(today) {
-		for _, report := range getReportsIfExist() {
-			messages = append(messages, fmt.Sprintf("New Photo Report!\n%s\n%s", report.Title, report.URL))
-		}
+	if !todayIsReportCheckDay(today) {
+		fmt.Printf("Today is %s, but messages will be send only in %s days of the week\n", today, os.Getenv("DAYS_FOR_REPORT_CHECK"))
+		return messages
+	}
+
+	for _, report := range getReportsIfExist() {
+		messages = append(messages, fmt.Sprintf("New Photo Report!\n%s\n%s", report.Title, report.URL))
 	}
 
 	return messages
 }
 
-// GetMessageIfPingIsNotSuccessful returns error message if ping is not successfull
+// GetMessageIfPingIsNotSuccessful returns error message if ping is not successful
 func GetMessageIfPingIsNotSuccessful() []string {
 	var messages []string
 	host := os.Getenv("SITE_ADDRESS")
