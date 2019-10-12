@@ -7,7 +7,7 @@ import (
 func TestGetPostsFromHTML(t *testing.T) {
 	t.Run("returns links", func(t *testing.T) {
 		fileText := FileGetContents("../storage/test_files/example")
-		result := GetPostsFromHTML(fileText)
+		result := GetPostsFromHTML(&fileText)
 
 		if len(result) != 8 {
 			t.Error("GetLinksFromHTML must return slice with 8 items")
@@ -23,7 +23,7 @@ func TestGetAllInformation(t *testing.T) {
 		img := "https://image.jpg"
 		url := "https://test.com/hello/"
 
-		result := GetAllInformation(links)
+		result := GetAllInformation(&links)
 
 		if result[0].Title != title {
 			t.Error("Returned Title from GetAllInformation func must be `" + title + "` but `" + result[0].Title + "` returned")

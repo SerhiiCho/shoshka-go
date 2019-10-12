@@ -92,14 +92,13 @@ func getErrorsIfExist() []string {
 // getReportsIfExist makes request gets data and searches for new Photo Reports
 func getReportsIfExist() []models.PhotoReport {
 	html := utils.GetHTMLFromTargetURL(os.Getenv("BOT_TARGET_URL"))
-	posts := utils.GetPostsFromHTML(html)
-	photoReports := utils.GetAllInformation(posts)
+	posts := utils.GetPostsFromHTML(&html)
+	photoReports := utils.GetAllInformation(&posts)
 	titles := utils.GetTitlesFromPhotoReports(photoReports)
-	tgMessageData := utils.GenerateMapOfNewData(titles, photoReports)
 
 	if len(titles) > 0 {
 		utils.PutIntoCache(titles, "titles")
 	}
 
-	return tgMessageData
+	return utils.GenerateMapOfNewData(titles, photoReports)
 }
