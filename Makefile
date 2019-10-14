@@ -2,6 +2,8 @@
 deploy:
 	go test ./...
 	go build -o shoshka-go
+	git add shoshka-go
+	git commit -m 'Compiled binary'
 	git push origin master
 
 .PHONY: test
