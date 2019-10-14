@@ -18,6 +18,7 @@ scrutinizer:
 	cp .env.example .env
 	cp storage/errors.example storage/errors
 	cp storage/titles.example storage/titles
+	go mod vendor
 	go test ./...
 
 .DEFAULT_GOAL := scrutinizer
