@@ -18,10 +18,14 @@ func GetAllInformation(html *[]string) []models.PhotoReport {
 	var photoReport models.PhotoReport
 	var result []models.PhotoReport
 
+	compiledTitle := regexp.MustCompile("<h3 (.|\\n)*?[^ ]>(.*)<\\/a>")
+	compiledImage := regexp.MustCompile(" src=\"([\\S]+)\" ")
+	compiledURL := regexp.MustCompile(" href=[\"|']([\\S]+)(\"|') ")
+
 	for _, tag := range *html {
-		photoReport.Title = regexp.MustCompile("<h3 (.|\\n)*?[^ ]>(.*)<\\/a>").FindStringSubmatch(tag)[2]
-		photoReport.Image = regexp.MustCompile(" src=\"([\\S]+)\" ").FindStringSubmatch(tag)[1]
-		photoReport.URL = regexp.MustCompile(" href=[\"|']([\\S]+)(\"|') ").FindStringSubmatch(tag)[1]
+		photoReport.Title = compiledTitle.FindStringSubmatch(tag)[2]
+		photoReport.Image = compiledImage.FindStringSubmatch(tag)[1]
+		photoReport.URL = compiledURL.FindStringSubmatch(tag)[1]
 
 		result = append(result, photoReport)
 	}
