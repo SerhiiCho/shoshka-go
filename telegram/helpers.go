@@ -96,9 +96,5 @@ func getReportsIfExist() []models.PhotoReport {
 	photoReports := utils.GetAllInformation(&posts)
 	titles := utils.GetTitlesFromPhotoReports(photoReports)
 
-	if len(titles) > 0 {
-		utils.PutIntoCache(titles, "titles")
-	}
-
 	return utils.GenerateMapOfNewData(titles, photoReports)
 }

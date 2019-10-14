@@ -1,6 +1,8 @@
 package utils
 
 import (
+	"fmt"
+
 	"github.com/SerhiiCho/shoshka-go/models"
 )
 
@@ -49,7 +51,12 @@ func GenerateMapOfNewData(titles []string, photoReports []models.PhotoReport) []
 	oldTitles := GetCached("titles")
 	newPhotoReportTitles := GetUniqueItem(titles, oldTitles)
 
+	if len(titles) > 0 {
+		PutIntoCache(titles, "titles")
+	}
+
 	if len(newPhotoReportTitles) == 0 {
+		fmt.Print("There are no new photo reports")
 		return nil
 	}
 
