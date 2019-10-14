@@ -1,3 +1,5 @@
+<h2 align="center">Shoshka</h2>
+
 <p align="center">
     <a href="https://travis-ci.org/SerhiiCho/shoshka-go">
         <img src="https://travis-ci.org/SerhiiCho/shoshka-go.svg?branch=master">
