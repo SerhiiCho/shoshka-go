@@ -3,10 +3,13 @@
         <img src="https://travis-ci.org/SerhiiCho/shoshka-go.svg?branch=master">
     </a>
     <a href="https://scrutinizer-ci.com/g/SerhiiCho/shoshka-go/">
-        <img src="https://scrutinizer-ci.com/g/SerhiiCho/shoshka-go/badges/build.png?b=master">
+        <img src="https://scrutinizer-ci.com/g/SerhiiCho/shoshka-go/badges/coverage.png?b=master">
     </a>
     <a href="https://scrutinizer-ci.com/g/SerhiiCho/shoshka-go/">
         <img src="https://scrutinizer-ci.com/g/SerhiiCho/shoshka-go/badges/quality-score.png?b=master">
+    </a>
+    <a href="https://scrutinizer-ci.com/g/SerhiiCho/shoshka-go/">
+        <img src="https://scrutinizer-ci.com/g/SerhiiCho/shoshka-go/badges/build.png?b=master">
     </a>
 </p>
 
