@@ -1,6 +1,12 @@
 <p align="center">
-    <a title="Latest push build on default branch: created">
-        <img src="https://travis-ci.org/SerhiiCho/shoshka-go.svg?branch=master" alt="build:created">
+    <a href="https://travis-ci.org/SerhiiCho/shoshka-go">
+        <img src="https://travis-ci.org/SerhiiCho/shoshka-go.svg?branch=master">
+    </a>
+    <a href="https://scrutinizer-ci.com/g/SerhiiCho/shoshka-go/">
+        <img src="https://scrutinizer-ci.com/g/SerhiiCho/shoshka-go/badges/build.png?b=master">
+    </a>
+    <a href="https://scrutinizer-ci.com/g/SerhiiCho/shoshka-go/">
+        <img src="https://scrutinizer-ci.com/g/SerhiiCho/shoshka-go/badges/quality-score.png?b=master">
     </a>
 </p>
 
