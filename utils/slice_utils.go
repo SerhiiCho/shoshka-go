@@ -56,7 +56,7 @@ func GenerateMapOfNewData(titles []string, photoReports []models.PhotoReport) []
 	}
 
 	if len(newPhotoReportTitles) == 0 {
-		fmt.Print("There are no new photo reports")
+		fmt.Println("There are no new photo reports")
 		return nil
 	}
 
