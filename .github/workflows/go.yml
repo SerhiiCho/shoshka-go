@@ -18,9 +18,9 @@ jobs:
 
     - name: Prepare invironment
       run: |
-        - cp .env.example .env
-        - cp storage/errors.example storage/errors
-        - cp storage/titles.example storage/titles
+        cp .env.example .env
+        cp storage/errors.example storage/errors
+        cp storage/titles.example storage/titles
 
     - name: Get dependencies
       run: go mod vendor
