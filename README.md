@@ -13,6 +13,9 @@
     <a href="https://scrutinizer-ci.com/g/SerhiiCho/shoshka-go/">
         <img src="https://scrutinizer-ci.com/g/SerhiiCho/shoshka-go/badges/build.png?b=master">
     </a>
+    <a href="https://goreportcard.com/report/github.com/SerhiiCho/shoshka-go">
+        <img src="https://goreportcard.com/badge/github.com/SerhiiCho/shoshka-go">
+    </a>
 </p>
 
 _This program is written for a specific case and is not helpful for others, but of course you can do whatever you want with it if you want_
