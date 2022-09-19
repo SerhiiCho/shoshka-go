@@ -10,6 +10,10 @@ deploy:
 test:
 	go test ./...
 
+build:
+	go test ./...
+	go build -o shoshka-go
+
 .PHONY: dev
 dev:
 	go test ./...

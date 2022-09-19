@@ -77,8 +77,20 @@ func GetMessagesWithNewErrors() []string {
 
 func getErrorsIfExist() []string {
 	errorsContext := utils.FileGetContents(os.Getenv("ERROR_LOG_PATH"))
+	var emptyStrings []string
+
+	if errorsContext == "" {
+		utils.PutIntoCache(emptyStrings, "errors")
+		return emptyStrings
+	}
 
 	newErrors := utils.ParseErrors(errorsContext)
+
+	if len(newErrors) == 0 {
+		utils.PutIntoCache(emptyStrings, "errors")
+		return emptyStrings
+	}
+
 	oldErrors := utils.GetCached("errors")
 	uniqueErrors := utils.GetUniqueItem(oldErrors, newErrors)
 
